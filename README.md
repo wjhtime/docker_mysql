@@ -30,9 +30,14 @@ linux环境下docker实现mysql主从服务器
 1. 启动mysql_master主服务器
 
 ```shell
+# 拉取mysql镜像
 docker pull mysql:5.7
 
-docker run --name mysql_master -d -p 3307:3306 -v /root/docker/mysql/conf.d/master.cnf:/etc/mysql/conf.d/master.cnf -v /root/docker/mysql/master-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root mysql:5.7
+# 启动容器，并配置密码为root
+docker run --name mysql_master -d -p 3307:3306 \
+-v /root/docker/mysql/conf.d/master.cnf:/etc/mysql/conf.d/master.cnf \
+-v /root/docker/mysql/master-data:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=root mysql:5.7
 ```
 
 
@@ -40,7 +45,10 @@ docker run --name mysql_master -d -p 3307:3306 -v /root/docker/mysql/conf.d/mast
 2. 启动mysql_slave从服务器
 
 ```shell
-docker run --name mysql_slave -d -p 3308:3306 -v /root/docker/mysql/conf.d/slave.cnf:/etc/mysql/conf.d/slave.cnf -v /root/docker/mysql/slave-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root --link mysql_master:mysql_master mysql:5.7
+docker run --name mysql_slave -d -p 3308:3306 \
+-v /root/docker/mysql/conf.d/slave.cnf:/etc/mysql/conf.d/slave.cnf \
+-v /root/docker/mysql/slave-data:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=root --link mysql_master:mysql_master mysql:5.7
 ```
 
 
