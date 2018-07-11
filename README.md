@@ -7,7 +7,7 @@ linux环境下docker实现mysql主从服务器
 
 启动2个mysql服务器，mysql_master主服务器，mysql_slave从服务器，并实现主从复制功能
 
-另外docker实现的nginx负载均衡在此 [nginx负载均衡](https://github.com/wjhtime/docker_mysql)
+另外docker实现的nginx负载均衡在此 [nginx负载均衡](https://github.com/wjhtime/docker_nginx)
 
 
 
